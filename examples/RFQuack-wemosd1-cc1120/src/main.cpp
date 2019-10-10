@@ -7,11 +7,12 @@
 
 /* Network configuration */
 #define RFQUACK_NETWORK_ESP8266
-#include "wifi_credentials.h" // <- not committed because it contains secrets
+#define RFQUACK_NETWORK_SSID "GuglioHouse"
+#define RFQUACK_NETWORK_PASS "Leonida1"
 
 /* Transport configuration */
 #define RFQUACK_TRANSPORT_MQTT
-#define RFQUACK_MQTT_BROKER_HOST "192.168.42.225"
+#define RFQUACK_MQTT_BROKER_HOST "192.168.1.200"
 
 /* Radio configuration */
 #define RFQUACK_RADIO_CC1120
