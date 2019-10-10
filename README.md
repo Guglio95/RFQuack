@@ -73,10 +73,11 @@ You could play around with other combinations, of course. And if you feel genero
 ## Prepare Your Software
 RFQuack comes in the form of a firmware *library*, which means that you need to write your own "main" to define a minimum set of parameters. Don't worry, there's not much to write in there, and we provide a [few working examples](https://github.com/trendmicro/RFQuack/blob/master/examples/).
 
-* checkout this repository: `git clone https://github.com/trendmicro/RFQuack`
+* checkout this repository: `git clone --recurse-submodules https://github.com/Guglio95/RFQuack`
 * enter the main directory: `cd RFQuack`
 * install Python dependencies: `pip install -r src/client/requirements.pip` (note that this will automatically install [PlatformIO Core (CLI)](https://docs.platformio.org/en/latest/core.html), so you might want to remove such dependency if you have it installed already)
-* install the dependencies listed in `library.json` via `pio install -g <library name>` (if you want to install them globally)
+* generate protobuf implementations: `make`
+* install the RFQuack library via `platformio lib -g install file://<abs path to RFQuack>` (if you want to install them globally)
 * to talk to your RFQuack dongle, you have two options:
   * **MQTT Transport (and hardware serial console):** install or have access to an MQTT broker (Mosquitto is just perfect for this):
     * PROs:
@@ -139,20 +140,20 @@ Now you can use RFQuack via the IPython shell. We highly recommend tmux to keep 
 ```bash
 $ python src/client/rfq.py --help                      
 Usage: rfq.py [OPTIONS] COMMAND [ARGS]...                                
-                                                                         
+
 Options:                                                                 
   -l, --loglevel [CRITICAL|ERROR|WARNING|INFO|DEBUG|NOTSET]              
   --help                          Show this message and exit.            
-                                                                         
+
 Commands:                                                                
   mqtt  RFQuack client with MQTT transport.                              
   tty   RFQuack client with serial transport.                            
 
 $ python src/client/rfq.py mqtt --help                 
 Usage: rfq.py mqtt [OPTIONS]                                             
-                                                                         
+
   RFQuack client with MQTT transport. Assumes one dongle per MQTT broker.
-                                                                         
+
 Options:                                                                 
   -i, --client_id TEXT                                                   
   -H, --host TEXT                                                        
@@ -163,9 +164,9 @@ Options:
 
 $ python src/client/rfq.py tty --help                  
 Usage: rfq.py tty [OPTIONS]                                              
-                                                                         
+
   RFQuack client with serial transport.                                  
-                                                                         
+
 Options:                                                                 
   -b, --baudrate INTEGER                                                 
   -s, --bytesize INTEGER                                                 
