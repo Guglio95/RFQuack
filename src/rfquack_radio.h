@@ -79,21 +79,25 @@ void rfquack_update_frequency() {
  * @brief Changes TX power in the radio driver
  */
 void rfquack_update_tx_power() {
+    if (!
     rfquack_rf.setTxPower(rfq.modemConfig.txPower
 #ifdef RFQUACK_RADIO_SET_HIGHPOWER
         ,rfq.modemConfig.isHighPowerModule
 #endif
-        );
+        )){
+        Log.error("⚠ Unable to update tx power");
+    }
 }
 
 /**
  * @brief Chages modem config choice in the radio driver
  */
 void rfquack_update_modem_config_choice() {
-  rfquack_rf.setModemConfig(
-      (RFQRadioModemConfigChoice)rfq.modemConfig.modemConfigChoiceIndex);
-
-  Log.trace("Modem config set to %d", rfq.modemConfig.modemConfigChoiceIndex);
+    if (rfquack_rf.setModemConfig((RFQRadioModemConfigChoice)rfq.modemConfig.modemConfigChoiceIndex)) {
+        Log.trace("Modem config set to %d", rfq.modemConfig.modemConfigChoiceIndex);
+    } else{
+        Log.error("⚠ Unable to set config to %d", rfq.modemConfig.modemConfigChoiceIndex);
+    }
 }
 
 /**
