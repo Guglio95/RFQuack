@@ -477,6 +477,14 @@ void rfquack_dispatch_command(char *topic, char *payload, int payload_length) {
     return;
   }
 
+    // Get registers configuration dump: "rfquack/in/get/dump_registers"
+    if (strcmp(topic, RFQUACK_IN_TOPIC RFQUACK_TOPIC_SEP RFQUACK_TOPIC_GET
+                      RFQUACK_TOPIC_SEP RFQUACK_TOPIC_DUMP_REGISTERS) == 0 &&
+        payload_length > 0) {
+        rfquack_rf.printRegisters();
+        return;
+    }
+
   /***********************************************************************
    * Modem
    ***********************************************************************/

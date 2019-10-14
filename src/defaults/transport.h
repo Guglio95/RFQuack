@@ -82,6 +82,8 @@
 
 #define RFQUACK_TOPIC_REGISTER_DEFAULT "register"
 
+#define RFQUACK_TOPIC_DUMP_REGISTERS_DEFAULT "dump_registers"
+
 #define RFQUACK_TOPIC_PACKET_MODIFICATION "packet_modification"
 
 #define RFQUACK_TOPIC_PACKET_FILTER_DEFAULT "packet_filter"
